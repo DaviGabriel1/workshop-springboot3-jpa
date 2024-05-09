@@ -1,12 +1,17 @@
 package com.primeiroboot.course.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,6 +25,10 @@ public class User implements Serializable{
 	private String email;
 	private String phone;
 	private String password;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "client") //um para muitos
+	private List<Order> orders = new ArrayList<>(); //relação de 1 para muitos
 	
 	public User() { // obrigatorio
 		
@@ -76,6 +85,12 @@ public class User implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	
+
+	public List<Order> getOrders() { //apenas get para colecoes
+		return orders;
 	}
 
 	@Override
