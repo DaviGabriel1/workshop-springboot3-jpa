@@ -13,6 +13,8 @@ import com.primeiroboot.course.repositories.UserRepository;
 import com.primeiroboot.course.services.exceptions.DatabaseException;
 import com.primeiroboot.course.services.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 //@Component registra a classe como um componente do Spring (Permite a injeção com o autowired)
 @Service //tem praticamente a mesma função do component, mas é mais semanticamente correto
 public class UserService {
@@ -42,9 +44,13 @@ public class UserService {
 	}
 	
 	public User update(Long id,User obj) {
+		try {
 		User entity = repository.getOne(id); //getOne apenas prepara o objeto monitorado para depois efetuar mudanças, sendo mais eficiente q o findById() nesse aspecto
 		updateData(entity,obj);
 		return repository.save(entity);
+		}catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
 	}
 
 	private void updateData(User entity, User obj) {
