@@ -8,3 +8,29 @@ projeto criado com auxilio do curso de programação orientada a objetos do Neli
 1- criação do projeto SpringBoot
 
 2- implementação do modelo de dominio
+<img src="/assets/DomainModel.png">
+
+3- Implementação da instancia de dominio
+
+<img src="/assets/DomainInstance.png">
+
+4- Estruturar camada lógica: resource, service, repository
+
+<img src="/assets/LogicalLayers.png">
+
+5- configurar banco de dados de teste - h2
+
+6- fazer a seed do banco de dados
+
+7- CRUD - Create, Retrieve, Update, Delete
+
+8-: Exception handling (http)
+
+### Tecnologias
+
+- Spring Boot 3
+- Apache Tomcat
+- Maven
+- H2 Database
+- PostgreSQL
+- Postman
